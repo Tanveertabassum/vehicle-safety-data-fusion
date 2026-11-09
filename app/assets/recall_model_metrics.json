@@ -1,0 +1,244 @@
+{
+  "n_rows": 2487,
+  "n_groups": 519,
+  "positive_rate": 0.3325,
+  "cv": "StratifiedGroupKFold(5) by nameplate x 3 seeds = 15 folds",
+  "results": {
+    "dummy_prevalence": {
+      "ap": {
+        "mean": 0.3325,
+        "std": 0.0011
+      },
+      "roc_auc": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "p_at_top10": {
+        "mean": 0.3316,
+        "std": 0.1076
+      }
+    },
+    "baseline_complaint_volume_only": {
+      "ap": {
+        "mean": 0.4749,
+        "std": 0.0501
+      },
+      "roc_auc": {
+        "mean": 0.6774,
+        "std": 0.0313
+      },
+      "p_at_top10": {
+        "mean": 0.5093,
+        "std": 0.1075
+      }
+    },
+    "baseline_volume_plus_prior_recalls": {
+      "ap": {
+        "mean": 0.6211,
+        "std": 0.0428
+      },
+      "roc_auc": {
+        "mean": 0.7497,
+        "std": 0.0304
+      },
+      "p_at_top10": {
+        "mean": 0.7579,
+        "std": 0.0533
+      }
+    },
+    "logreg__A_complaints_only": {
+      "ap": {
+        "mean": 0.5758,
+        "std": 0.0417
+      },
+      "roc_auc": {
+        "mean": 0.7211,
+        "std": 0.0274
+      },
+      "p_at_top10": {
+        "mean": 0.7032,
+        "std": 0.0697
+      }
+    },
+    "gradient_boosting__A_complaints_only": {
+      "ap": {
+        "mean": 0.5736,
+        "std": 0.0466
+      },
+      "roc_auc": {
+        "mean": 0.7085,
+        "std": 0.031
+      },
+      "p_at_top10": {
+        "mean": 0.6963,
+        "std": 0.0707
+      }
+    },
+    "logreg__A2_complaints_plus_vehicle_age": {
+      "ap": {
+        "mean": 0.627,
+        "std": 0.0437
+      },
+      "roc_auc": {
+        "mean": 0.7532,
+        "std": 0.0261
+      },
+      "p_at_top10": {
+        "mean": 0.7833,
+        "std": 0.0692
+      }
+    },
+    "gradient_boosting__A2_complaints_plus_vehicle_age": {
+      "ap": {
+        "mean": 0.6129,
+        "std": 0.0435
+      },
+      "roc_auc": {
+        "mean": 0.7513,
+        "std": 0.0257
+      },
+      "p_at_top10": {
+        "mean": 0.7405,
+        "std": 0.0609
+      }
+    },
+    "logreg__B_complaints_plus_specs": {
+      "ap": {
+        "mean": 0.6702,
+        "std": 0.0434
+      },
+      "roc_auc": {
+        "mean": 0.7773,
+        "std": 0.0291
+      },
+      "p_at_top10": {
+        "mean": 0.8276,
+        "std": 0.0589
+      }
+    },
+    "gradient_boosting__B_complaints_plus_specs": {
+      "ap": {
+        "mean": 0.6651,
+        "std": 0.0427
+      },
+      "roc_auc": {
+        "mean": 0.7855,
+        "std": 0.0297
+      },
+      "p_at_top10": {
+        "mean": 0.8035,
+        "std": 0.0591
+      }
+    },
+    "logreg__C_complaints_specs_prior_recalls": {
+      "ap": {
+        "mean": 0.6837,
+        "std": 0.0369
+      },
+      "roc_auc": {
+        "mean": 0.787,
+        "std": 0.0273
+      },
+      "p_at_top10": {
+        "mean": 0.853,
+        "std": 0.059
+      }
+    },
+    "gradient_boosting__C_complaints_specs_prior_recalls": {
+      "ap": {
+        "mean": 0.6769,
+        "std": 0.0376
+      },
+      "roc_auc": {
+        "mean": 0.7922,
+        "std": 0.0273
+      },
+      "p_at_top10": {
+        "mean": 0.8196,
+        "std": 0.0747
+      }
+    }
+  },
+  "paired_ap_gains": [
+    {
+      "from": "logreg__A_complaints_only",
+      "to": "logreg__A2_complaints_plus_vehicle_age",
+      "mean_ap_gain": 0.0512,
+      "folds_improved": "15/15"
+    },
+    {
+      "from": "logreg__A2_complaints_plus_vehicle_age",
+      "to": "logreg__B_complaints_plus_specs",
+      "mean_ap_gain": 0.0433,
+      "folds_improved": "15/15"
+    },
+    {
+      "from": "logreg__B_complaints_plus_specs",
+      "to": "logreg__C_complaints_specs_prior_recalls",
+      "mean_ap_gain": 0.0135,
+      "folds_improved": "13/15"
+    },
+    {
+      "from": "baseline_volume_plus_prior_recalls",
+      "to": "logreg__C_complaints_specs_prior_recalls",
+      "mean_ap_gain": 0.0626,
+      "folds_improved": "15/15"
+    }
+  ],
+  "final_model": "logreg__C_complaints_specs_prior_recalls",
+  "permutation_importance_ap_drop": {
+    "prior_recalls_2020_2022": 0.0697,
+    "log_complaints": 0.0654,
+    "vehicle_age_2022": 0.0447,
+    "log_configs": 0.038,
+    "share_ev": 0.0313,
+    "share_2022": 0.0147,
+    "share_awd": 0.0125,
+    "body_SUV": 0.0124,
+    "body_VAN": 0.0088,
+    "share_hybrid": 0.0069,
+    "mpg_comb_median": 0.0051,
+    "share_turbo": 0.0048,
+    "cyl_median": 0.0048,
+    "share_driver_assist": 0.0029,
+    "share_engine": 0.0022
+  },
+  "final_logreg_standardised_coefficients": {
+    "vehicle_age_2022": -0.467,
+    "body_PICKUP": -0.141,
+    "share_engine": -0.13,
+    "share_lighting": -0.103,
+    "displ_median": -0.085,
+    "share_speed_control": -0.08,
+    "share_crash": -0.07,
+    "share_suspension": -0.053,
+    "share_unknown": -0.05,
+    "share_air_bags": -0.048,
+    "share_visibility": -0.045,
+    "share_brakes": -0.042,
+    "share_fire": -0.032,
+    "share_seats_belts": -0.019,
+    "share_powertrain": 0.007,
+    "share_wheels_tires": 0.009,
+    "share_steering": 0.024,
+    "share_structure": 0.046,
+    "share_injury": 0.065,
+    "body_SUV": 0.067,
+    "share_fuel_propulsion": 0.07,
+    "cyl_median": 0.085,
+    "share_electrical": 0.094,
+    "body_CAR": 0.094,
+    "mpg_comb_median": 0.114,
+    "share_driver_assist": 0.115,
+    "body_WAGON": 0.123,
+    "body_VAN": 0.148,
+    "share_turbo": 0.163,
+    "share_hybrid": 0.163,
+    "share_2022": 0.258,
+    "share_awd": 0.268,
+    "share_ev": 0.291,
+    "log_configs": 0.409,
+    "prior_recalls_2020_2022": 0.466,
+    "log_complaints": 0.592
+  }
+}

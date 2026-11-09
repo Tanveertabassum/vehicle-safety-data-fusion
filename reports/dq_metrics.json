@@ -1,0 +1,284 @@
+{
+  "complaints": {
+    "raw_rows": 545345,
+    "raw_unique_complaints_odino": 377469,
+    "completeness_raw": {
+      "MAKETXT": {
+        "blank": 7,
+        "blank_pct": 0.0
+      },
+      "MODELTXT": {
+        "blank": 7,
+        "blank_pct": 0.0
+      },
+      "YEARTXT": {
+        "blank": 7,
+        "blank_pct": 0.0,
+        "unknown_9999": 7709
+      },
+      "COMPDESC": {
+        "blank": 2,
+        "blank_pct": 0.0
+      },
+      "CDESCR": {
+        "blank": 0,
+        "blank_pct": 0.0
+      },
+      "VIN": {
+        "blank": 11919,
+        "blank_pct": 2.19
+      },
+      "STATE": {
+        "blank": 0,
+        "blank_pct": 0.0
+      },
+      "FAILDATE": {
+        "blank": 0,
+        "blank_pct": 0.0
+      },
+      "MILES": {
+        "blank": 375137,
+        "blank_pct": 68.79,
+        "zero": 5136
+      },
+      "DRIVE_TRAIN": {
+        "blank": 517300,
+        "blank_pct": 94.86
+      },
+      "FUEL_TYPE": {
+        "blank": 517124,
+        "blank_pct": 94.83
+      },
+      "NUM_CYLS": {
+        "blank": 518579,
+        "blank_pct": 95.09
+      },
+      "TRANS_TYPE": {
+        "blank": 543735,
+        "blank_pct": 99.7
+      }
+    },
+    "dup_exact_rows": 0,
+    "dup_cmplid": 0,
+    "dup_odino_component": 4361,
+    "rows_from_multi_component_complaints": 286682,
+    "prod_type_counts": {
+      "V": 538049,
+      "T": 3821,
+      "E": 2142,
+      "C": 1326,
+      "": 7
+    },
+    "rows_after_vehicle_filter": 538049,
+    "resubmitted_complaints_removed": 356,
+    "inconsistent_values_raw": {
+      "model_year_unknown_9999": 527,
+      "failure_after_received_date": 8,
+      "failure_before_1990": 479,
+      "failure_more_than_1y_before_model_year": 876,
+      "miles_over_500k": 348,
+      "state_not_valid_postal_code": 43,
+      "make_spellings_raw": 398,
+      "make_spellings_after_normalisation": 391,
+      "make_mercedes_variants": {
+        "MERCEDES-BENZ": 9741,
+        "MERCEDES BENZ": 1310,
+        "MERCEDES-BENz": 2
+      },
+      "model_redundant_prefix": 414,
+      "component_top_level_labels_raw": 52
+    },
+    "after_cleaning": {
+      "rows": 537559,
+      "unique_complaints": 375653,
+      "model_year_missing": 527,
+      "fail_date_missing_or_invalid": 487,
+      "miles_usable": 164629,
+      "state_missing_or_invalid": 43,
+      "model_redundant_prefix": 0,
+      "make_spellings": 391,
+      "component_groups": 17,
+      "component_group_counts": {
+        "ENGINE": 90425,
+        "ELECTRICAL": 68196,
+        "POWERTRAIN": 54197,
+        "UNKNOWN": 53483,
+        "BRAKES": 38784,
+        "DRIVER_ASSIST": 37194,
+        "STEERING": 35895,
+        "FUEL_PROPULSION": 31404,
+        "AIR_BAGS": 23355,
+        "STRUCTURE": 20702,
+        "VISIBILITY": 15200,
+        "SPEED_CONTROL": 14554,
+        "SUSPENSION": 14437,
+        "LIGHTING": 12335,
+        "SEATS_BELTS": 10703,
+        "WHEELS_TIRES": 8582,
+        "OTHER": 8113
+      }
+    }
+  },
+  "recalls": {
+    "raw_rows": 220999,
+    "raw_campaigns": 3814,
+    "completeness_raw": {
+      "NHTSA ID": 0,
+      "MAKE": 0,
+      "MODEL": 0,
+      "MODEL YEAR": 0,
+      "SUMMARY": 0
+    },
+    "dup_exact_rows": 3427,
+    "model_year_unknown_9999": 3450,
+    "recall_type_counts_rows": {
+      "V": 216383,
+      "E": 2562,
+      "T": 1949,
+      "C": 105
+    },
+    "campaign_id_nonstandard_rows": 820,
+    "campaign_id_nonstandard_campaigns": 10,
+    "docs_per_campaign_median": 10.0,
+    "docs_per_campaign_max": 14445,
+    "make_spellings_raw": 478,
+    "after_cleaning": {
+      "campaign_vehicle_rows": 22528,
+      "vehicle_campaigns": 3465,
+      "make_spellings": 297,
+      "campaigns_by_filed_year": {
+        "2020": 563,
+        "2021": 666,
+        "2022": 636,
+        "2023": 667,
+        "2024": 723,
+        "2025": 210
+      }
+    }
+  },
+  "epa": {
+    "raw_rows": 48351,
+    "model_year_range": [
+      1984,
+      2025
+    ],
+    "dup_exact_rows": 0,
+    "dup_id": 0,
+    "completeness_raw": {
+      "make": 0,
+      "model": 0,
+      "baseModel": 0,
+      "year": 0,
+      "VClass": 0,
+      "drive": 1186,
+      "cylinders": 1085,
+      "displ": 1083,
+      "comb08": 0,
+      "fuelType1": 0,
+      "atvType": 42556,
+      "tCharger": 37604,
+      "trany": 11
+    },
+    "cylinders_missing_and_electric": 1046,
+    "cylinders_missing_not_electric": 39,
+    "dup_make_basemodel_year_configs": 36637,
+    "after_cleaning": {
+      "base_model_year_rows": 6350,
+      "model_years_kept": "2005+",
+      "rows_kept_2005plus": 25482
+    }
+  },
+  "linking": {
+    "complaints_naive_exact_string_match_pct": 0.9,
+    "complaints_case_insensitive_exact_string_match_pct": 76.91,
+    "complaints": {
+      "rows": 537559,
+      "rule_counts": {
+        "1_exact_base_model": 429681,
+        "x_unmatched": 45774,
+        "4_prefix_match": 27933,
+        "2_exact_trim_or_alias": 23970,
+        "5_trim_prefix_match": 4573,
+        "x_heavy_duty_not_in_epa": 2582,
+        "3_make_prefix_removed": 2519,
+        "no_key": 527
+      },
+      "match_rate_pct_cumulative": {
+        "1_exact_base_model": 79.93,
+        "2_exact_trim_or_alias": 84.39,
+        "3_make_prefix_removed": 84.86,
+        "4_prefix_match": 90.06,
+        "5_trim_prefix_match": 90.91
+      }
+    },
+    "recall_campaign_vehicles": {
+      "rows": 22528,
+      "rule_counts": {
+        "x_unmatched": 13116,
+        "1_exact_base_model": 5495,
+        "2_exact_trim_or_alias": 1884,
+        "5_trim_prefix_match": 1006,
+        "4_prefix_match": 819,
+        "x_heavy_duty_not_in_epa": 183,
+        "3_make_prefix_removed": 25
+      },
+      "match_rate_pct_cumulative": {
+        "1_exact_base_model": 24.39,
+        "2_exact_trim_or_alias": 32.75,
+        "3_make_prefix_removed": 32.87,
+        "4_prefix_match": 36.5,
+        "5_trim_prefix_match": 40.97
+      }
+    },
+    "top_prefix_matches": [
+      "CHEVROLET SILVERADO1500 -> SILVERADO (9278)",
+      "GMC SIERRA1500 -> SIERRA (5552)",
+      "GMC YUKONXL -> YUKON (1477)",
+      "FORD MAVERICKHYBRID -> MAVERICK (1306)",
+      "HYUNDAI SANTAFESPORT -> SANTAFE (971)",
+      "CHRYSLER PACIFICAPLUGINHYBRID -> PACIFICA (865)",
+      "FORD F150HYBRID -> F150 (765)",
+      "FORD ESCAPEHYBRID -> ESCAPE (661)",
+      "HONDA CRVHYBRID -> CRV (644)",
+      "MITSUBISHI OUTLANDERSPORT -> OUTLANDER (413)",
+      "CADILLAC ESCALADEESV -> ESCALADE (384)",
+      "JEEP WRANGLER4XE -> WRANGLER (358)",
+      "FORD FUSIONHYBRID -> FUSION (347)",
+      "JEEP GRANDCHEROKEEL -> GRANDCHEROKEE (343)",
+      "BUICK ENCOREGX -> ENCORE (255)"
+    ],
+    "top_heavy_duty_blocked": [
+      "CHEVROLET SILVERADO2500 (1149)",
+      "GMC SIERRA2500 (691)",
+      "CHEVROLET SILVERADO3500 (385)",
+      "GMC SIERRA3500 (346)",
+      "CHEVROLET SILVERADO4500 (6)",
+      "CHEVROLET SILVERADO5500 (3)",
+      "GMC SIERRA2500HD (1)",
+      "GMC SIERRAHD (1)"
+    ],
+    "top_unmatched": [
+      "RAM 2500 (5781)",
+      "FORD F250 (5083)",
+      "FORD F350 (2503)",
+      "RAM 3500 (2292)",
+      "FORD TRANSIT (684)",
+      "TOYOTA 4RUNNER (588)",
+      "RAM PROMASTER (533)",
+      "HYUNDAI IONIQ5 (523)",
+      "MERCEDESBENZ SPRINTER2500 (507)",
+      "HONDA ACCORD (436)"
+    ],
+    "complaints_unlinked_breakdown": {
+      "total": 48883,
+      "model_year_after_epa_snapshot_or_partial": 2818,
+      "epa_snapshot_last_model_year": 2025,
+      "heavy_duty_blocked": 2582,
+      "make_not_in_epa": 8914
+    },
+    "recalls_in_scope": {
+      "rows_with_epa_make_and_model_year_before_snapshot_end": 11377,
+      "linked_among_those_pct": 79.29
+    }
+  }
+}

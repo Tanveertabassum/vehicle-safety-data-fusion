@@ -1,0 +1,36 @@
+{
+  "hashes": {
+    "COMPLAINTS_RECEIVED_2020-2024.zip": {
+      "sha256": "a6db51f5fecd9ee5b8d73e8d5cfc5c6727ca1ba5ab9a4a103346b3090ff91918",
+      "matches_expected": true
+    },
+    "COMPLAINTS_RECEIVED_2025-2026.zip": {
+      "sha256": "360165967651af0e8f00623a03acdfe557f073fafe3aaaf229463f82d7253aba",
+      "matches_expected": true
+    },
+    "RCL_FROM_2020_2024.zip": {
+      "sha256": "e66dc10edf6de4016f116ef53857cf7a3791e96355fe113ca29ab135dbfa811f",
+      "matches_expected": true
+    },
+    "RCL_FROM_2025_2026.zip": {
+      "sha256": "df6a0ad9b16af326eb495b6aaa7222bfc0d58f0af07ce0316b5cf2131b45a1ca",
+      "matches_expected": true
+    },
+    "epa_vehicles.csv": {
+      "sha256": "8d57f973234ab5247a40826bb611131fa846e07e3266cdb587b611f8ec329988",
+      "matches_expected": true
+    }
+  },
+  "complaints": {
+    "rows": 545345,
+    "columns": 49
+  },
+  "recalls": {
+    "rows": 220999,
+    "columns": 6
+  },
+  "epa": {
+    "rows": 48351,
+    "columns": 84
+  }
+}

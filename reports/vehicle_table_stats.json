@@ -1,0 +1,14 @@
+{
+  "rows": 2487,
+  "nameplates": 519,
+  "makes": 57,
+  "positives": 827,
+  "positive_rate_pct": 33.25,
+  "rows_with_zero_complaints": 652,
+  "complaints_used_in_features": 145221,
+  "missing_specs": {
+    "displ_median": 99,
+    "cyl_median": 100,
+    "mpg_comb_median": 0
+  }
+}

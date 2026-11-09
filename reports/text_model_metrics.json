@@ -1,0 +1,100 @@
+{
+  "data": {
+    "complaints_total": 375653,
+    "multi_component": 107380,
+    "unknown_or_other_single": 31420,
+    "dropped_text_under_20_chars": 886,
+    "eligible": 235967,
+    "dev_rows": 60000,
+    "test_rows": 15000,
+    "classes": 15,
+    "dev_class_counts": {
+      "ENGINE": 11930,
+      "POWERTRAIN": 7232,
+      "ELECTRICAL": 5853,
+      "STEERING": 5746,
+      "BRAKES": 5189,
+      "AIR_BAGS": 4206,
+      "FUEL_PROPULSION": 3904,
+      "STRUCTURE": 3276,
+      "VISIBILITY": 2954,
+      "DRIVER_ASSIST": 2497,
+      "LIGHTING": 1974,
+      "SUSPENSION": 1686,
+      "SEATS_BELTS": 1523,
+      "WHEELS_TIRES": 1363,
+      "SPEED_CONTROL": 667
+    }
+  },
+  "results": {
+    "majority_class": {
+      "cv_macro_f1": 0.0221,
+      "cv_accuracy": 0.1988
+    },
+    "random_by_class_prior": {
+      "cv_macro_f1": 0.0668,
+      "cv_accuracy": 0.1008
+    },
+    "tfidf_logreg": {
+      "cv_macro_f1": 0.8451,
+      "cv_macro_f1_std": 0.0026,
+      "cv_accuracy": 0.8646,
+      "cv_seconds": 196.2
+    },
+    "holdout_2025_2026": {
+      "tfidf_logreg_macro_f1": 0.8268,
+      "tfidf_logreg_accuracy": 0.8601,
+      "majority_class_macro_f1": 0.0277,
+      "share_with_confidence_ge_0.6": 0.7777,
+      "accuracy_when_confidence_ge_0.6": 0.9372,
+      "accuracy_when_confidence_lt_0.6": 0.5906
+    },
+    "holdout_per_class_f1": {
+      "AIR_BAGS": 0.824,
+      "BRAKES": 0.917,
+      "DRIVER_ASSIST": 0.863,
+      "ELECTRICAL": 0.773,
+      "ENGINE": 0.908,
+      "FUEL_PROPULSION": 0.8,
+      "LIGHTING": 0.912,
+      "POWERTRAIN": 0.856,
+      "SEATS_BELTS": 0.903,
+      "SPEED_CONTROL": 0.456,
+      "STEERING": 0.928,
+      "STRUCTURE": 0.851,
+      "SUSPENSION": 0.725,
+      "VISIBILITY": 0.829,
+      "WHEELS_TIRES": 0.858
+    },
+    "top_confusions_true_to_pred": [
+      "ENGINE -> POWERTRAIN: 162",
+      "POWERTRAIN -> ENGINE: 147",
+      "ENGINE -> FUEL_PROPULSION: 82",
+      "ENGINE -> ELECTRICAL: 77",
+      "DRIVER_ASSIST -> ELECTRICAL: 70",
+      "FUEL_PROPULSION -> ENGINE: 65"
+    ],
+    "unknown_complaints": {
+      "scored": 27780,
+      "confidence_ge_0.6": 14389,
+      "confidence_ge_0.6_pct": 51.8,
+      "predicted_distribution_confident": {
+        "STRUCTURE": 3140,
+        "ELECTRICAL": 3089,
+        "VISIBILITY": 2631,
+        "POWERTRAIN": 1672,
+        "ENGINE": 1118,
+        "DRIVER_ASSIST": 761,
+        "FUEL_PROPULSION": 307,
+        "STEERING": 303,
+        "BRAKES": 234,
+        "SEATS_BELTS": 215,
+        "SPEED_CONTROL": 203,
+        "WHEELS_TIRES": 197,
+        "AIR_BAGS": 196,
+        "SUSPENSION": 194,
+        "LIGHTING": 129
+      }
+    }
+  }
+}
