@@ -1,5 +1,8 @@
 # Vehicle safety data fusion: complaints + recalls + specifications
      **🚀 Live demo: [open the app](https://vehicle-safety-data-fusion-zpbss32ief5dpj7zfp8rxh.streamlit.app/)**
+        ![Overview](docs/overview.png)
+        ![Linking the datasets](docs/linking.png)
+        ![Complaint text classifier](docs/text_classifier.png)
 
 This project assesses three public automotive data sources for AI use, measures and fixes their quality
 problems, links them into one dataset, and turns that into two working prototypes:
