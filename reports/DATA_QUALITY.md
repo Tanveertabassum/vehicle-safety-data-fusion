@@ -9,7 +9,7 @@ They describe the exact raw files listed in the README (SHA-256 verified on inge
 
 | Source | Format | Rows | Columns | Grain |
 |---|---|---|---|---|
-| NHTSA complaints 2020-2026 | headerless TAB-delimited text in ZIP, Latin-1, names from data dictionary | 545,345 | 49 | one row per complaint x component |
+| NHTSA complaints 2020-2026 | headerless TAB-delimited text in ZIP, UTF-8, names from data dictionary | 545,345 | 49 | one row per complaint x component |
 | NHTSA recall documents 2020-2026 | quoted CSV with header in ZIP | 220,999 | 6 | one row per recall *document* x vehicle |
 | EPA fuel-economy table | wide CSV | 48,351 | 84 | one row per tested configuration (model years 1984-2025) |
 
@@ -77,6 +77,10 @@ every complaint statistic by about 1.44x. All counts in this project are distinc
 | Model text with data-entry prefix "redundant" (e.g. "redundant SIENNA") | 414 | 0 | prefix stripped |
 | Make spellings (e.g. "MERCEDES-BENZ" (9741), "MERCEDES BENZ" (1310), "MERCEDES-BENz" (2)) | 398 distinct | 391 | upper-case, remove punctuation/spaces |
 | Component labels: NHTSA's old and new taxonomies mixed (e.g. "ENGINE" vs "ENGINE AND ENGINE COOLING", "SERVICE BRAKES" vs "SERVICE BRAKES, HYDRAULIC") | 52 top-level labels | 17 groups | explicit mapping in `src/common.py` |
+
+**Text encoding.** The complaint file is UTF-8 (every line decodes as UTF-8). 49,321 narratives
+contain non-ASCII characters such as curly quotes or "…". A first version of the pipeline read the file as Latin-1, which turned these
+into garbage like "moduleâ¦". The fix was to read it as UTF-8; garbled sequences remaining after the fix: 1.
 
 **Recalls:** 820 rows (10 campaigns) have IDs that do
 not follow the usual `YYV###` pattern (e.g. `21V00A`). They were kept, and the filing year was still read from the first two digits.

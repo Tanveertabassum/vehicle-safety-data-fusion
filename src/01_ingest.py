@@ -1,8 +1,8 @@
 """Step 1 - ingest the three raw sources into typed-as-string parquet files, unchanged.
 
 Sources and formats:
-  * NHTSA ODI complaints  - headerless, TAB-delimited flat file inside ZIP; column names come from
-                            a separate data dictionary (CMPL.txt). Latin-1 encoded.
+  * NHTSA ODI complaints  - headerless, TAB-delimited flat file inside ZIP (UTF-8); column names come from
+                            a separate data dictionary (CMPL.txt).
   * NHTSA recall documents - quoted, comma-delimited CSV with header inside ZIP; one row per
                             recall *document*, so one campaign appears many times.
   * EPA fuel-economy table - wide CSV (84 columns), one row per tested vehicle configuration.
@@ -46,7 +46,7 @@ def read_complaints():
     for name in ["COMPLAINTS_RECEIVED_2020-2024.zip", "COMPLAINTS_RECEIVED_2025-2026.zip"]:
         with zipfile.ZipFile(RAW / name) as zf, zf.open(zf.namelist()[0]) as f:
             reader = pd.read_csv(
-                io.TextIOWrapper(f, encoding="latin-1"), sep="\t", header=None, names=CMPL_COLUMNS,
+                io.TextIOWrapper(f, encoding="utf-8"), sep="\t", header=None, names=CMPL_COLUMNS,
                 dtype=str, quoting=3, na_filter=False, chunksize=100_000,
             )
             for chunk in reader:
@@ -60,7 +60,7 @@ def read_recalls():
     parts = []
     for name in ["RCL_FROM_2020_2024.zip", "RCL_FROM_2025_2026.zip"]:
         with zipfile.ZipFile(RAW / name) as zf, zf.open(zf.namelist()[0]) as f:
-            df = pd.read_csv(f, dtype=str, encoding="latin-1", keep_default_na=False)
+            df = pd.read_csv(f, dtype=str, encoding="utf-8", keep_default_na=False)
             df["SOURCE_FILE"] = name
             parts.append(df)
     return pd.concat(parts, ignore_index=True)

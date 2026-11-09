@@ -74,6 +74,11 @@ def clean_complaints():
     inc["make_spellings_after_normalisation"] = int(c.MAKE_N.nunique())
     inc["make_mercedes_variants"] = c.MAKETXT[c.MAKE_N == "MERCEDESBENZ"].value_counts().to_dict()
     inc["model_redundant_prefix"] = int(c.MODELTXT.str.contains(r"^\s*redundant\s", case=False, regex=True).sum())
+    # Narratives with non-ASCII characters (curly quotes, ellipses, accents). Reading the file with the
+    # wrong encoding (Latin-1 instead of UTF-8) garbles exactly these, e.g. an ellipsis becomes 'â\x80¦'.
+    first_txt = c.drop_duplicates("ODINO").CDESCR
+    inc["narratives_with_non_ascii_chars"] = int(first_txt.str.contains(r"[^\x00-\x7f]", regex=True).sum())
+    inc["narratives_with_mojibake_after_utf8_read"] = int(first_txt.str.contains("â\x80|Ã©|Â", regex=True).sum())
     inc["component_top_level_labels_raw"] = int(c.COMPDESC.str.split(":").str[0].str.strip().nunique())
     m["inconsistent_values_raw"] = inc
 

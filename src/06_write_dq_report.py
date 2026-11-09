@@ -42,7 +42,7 @@ They describe the exact raw files listed in the README (SHA-256 verified on inge
 
 | Source | Format | Rows | Columns | Grain |
 |---|---|---|---|---|
-| NHTSA complaints 2020-2026 | headerless TAB-delimited text in ZIP, Latin-1, names from data dictionary | {f(ing['complaints']['rows'])} | {ing['complaints']['columns']} | one row per complaint x component |
+| NHTSA complaints 2020-2026 | headerless TAB-delimited text in ZIP, UTF-8, names from data dictionary | {f(ing['complaints']['rows'])} | {ing['complaints']['columns']} | one row per complaint x component |
 | NHTSA recall documents 2020-2026 | quoted CSV with header in ZIP | {f(ing['recalls']['rows'])} | {ing['recalls']['columns']} | one row per recall *document* x vehicle |
 | EPA fuel-economy table | wide CSV | {f(ing['epa']['rows'])} | {ing['epa']['columns']} | one row per tested configuration (model years {e['model_year_range'][0]}-{e['model_year_range'][1]}) |
 
@@ -110,6 +110,10 @@ every complaint statistic by about {round(total / c['raw_unique_complaints_odino
 | Model text with data-entry prefix "redundant" (e.g. "redundant SIENNA") | {f(inc['model_redundant_prefix'])} | {f(aft['model_redundant_prefix'])} | prefix stripped |
 | Make spellings (e.g. {", ".join(f'"{k}" ({v})' for k, v in inc['make_mercedes_variants'].items())}) | {f(inc['make_spellings_raw'])} distinct | {f(inc['make_spellings_after_normalisation'])} | upper-case, remove punctuation/spaces |
 | Component labels: NHTSA's old and new taxonomies mixed (e.g. "ENGINE" vs "ENGINE AND ENGINE COOLING", "SERVICE BRAKES" vs "SERVICE BRAKES, HYDRAULIC") | {f(inc['component_top_level_labels_raw'])} top-level labels | {f(aft['component_groups'])} groups | explicit mapping in `src/common.py` |
+
+**Text encoding.** The complaint file is UTF-8 (every line decodes as UTF-8). {f(inc['narratives_with_non_ascii_chars'])} narratives
+contain non-ASCII characters such as curly quotes or "…". A first version of the pipeline read the file as Latin-1, which turned these
+into garbage like "moduleâ¦". The fix was to read it as UTF-8; garbled sequences remaining after the fix: {f(inc['narratives_with_mojibake_after_utf8_read'])}.
 
 **Recalls:** {f(r['campaign_id_nonstandard_rows'])} rows ({f(r['campaign_id_nonstandard_campaigns'])} campaigns) have IDs that do
 not follow the usual `YYV###` pattern (e.g. `21V00A`). They were kept, and the filing year was still read from the first two digits.

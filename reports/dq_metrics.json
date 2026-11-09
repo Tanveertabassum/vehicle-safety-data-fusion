@@ -86,6 +86,8 @@
         "MERCEDES-BENz": 2
       },
       "model_redundant_prefix": 414,
+      "narratives_with_non_ascii_chars": 49321,
+      "narratives_with_mojibake_after_utf8_read": 1,
       "component_top_level_labels_raw": 52
     },
     "after_cleaning": {

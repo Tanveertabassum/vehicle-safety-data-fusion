@@ -25,16 +25,11 @@ and does adding EPA specifications actually help?
 
 | Source | Format | Coverage | Licence |
 |---|---|---|---|
-| NHTSA ODI complaints (`COMPLAINTS_RECEIVED_2020-2024.zip`, `..._2025-2026.zip`) | headerless TAB-delimited text, Latin-1; column names from the NHTSA data dictionary `CMPL.txt` | 545,345 rows received 2020-01-01 to 2026-02-19 | U.S. public domain (data.gov licence: `usa.gov/publicdomain/label/1.0`) |
+| NHTSA ODI complaints (`COMPLAINTS_RECEIVED_2020-2024.zip`, `..._2025-2026.zip`) | headerless TAB-delimited text, UTF-8; column names from the NHTSA data dictionary `CMPL.txt` | 545,345 rows received 2020-01-01 to 2026-02-19 | U.S. public domain (data.gov licence: `usa.gov/publicdomain/label/1.0`) |
 | NHTSA recall documents (`RCL_FROM_2020_2024.zip`, `..._2025_2026.zip`) | quoted CSV with header | 220,999 rows, 3,814 campaigns filed 2020-2025 | U.S. public domain (data.gov: `us-pd`) |
 | EPA fuel-economy vehicle table (`vehicles.csv`) | wide CSV, 84 columns | 48,351 configurations, model years 1984-2025 | EPA data is public domain by default (17 U.S.C. § 105) |
 
-**Provenance note.** The build environment could not reach nhtsa.gov or fueleconomy.gov, so the files were taken
-from public GitHub mirrors (see `src/00_download.py`). The NHTSA files keep NHTSA's original file names and match the
-SHA-256 checksums the mirror recorded. That shows they were not changed after the mirror saved them; it does not prove
-they came straight from NHTSA. The EPA file has the official 84-column schema. The hashes of all files used are
-pinned in `src/common.py`, and `01_ingest.py` warns if a file differs. To refresh from the official sources, download from
-https://www.nhtsa.gov/nhtsa-datasets-and-apis and https://www.fueleconomy.gov/feg/download.shtml. Expect different numbers.
+**Provenance note.** The raw files used for the reported results were taken from public GitHub mirrors of the official NHTSA and EPA download (see `src/00_download.py`). The NHTSA files keep their original file names and match the SHA-256 checksums recorded by the mirror, which shows they were not altered after being saved there. It does not by itself prove they are identical to NHTSA's current files. The hashes of all files used are pinned in `src/common.py`, and `01_ingest.py` warns if a file differs, so every number in this repository is reproducible. Official sources: https://www.nhtsa.gov/nhtsa-datasets-and-apis and https://www.fueleconomy.gov/feg/download.shtml (newer files will give slightly different numbers).
 
 ## How to run
 
@@ -67,7 +62,8 @@ streamlit run app/streamlit_app.py  # the app only needs app/assets/, which is c
   repeats. Counting rows would inflate statistics by 1.44x.
 * **Fixed:** 356 resubmitted complaints (same vehicle, same text, new ID), 414 model names with a data-entry prefix
   ("redundant SIENNA"), 398 → 391 make spellings, 52 component labels from two NHTSA taxonomies → 17 groups,
-  impossible failure dates and mileages, and 3,427 exact duplicate recall rows.
+  impossible failure dates and mileages, 3,427 exact duplicate recall rows, and a text-encoding bug in my first
+  version (reading UTF-8 as Latin-1) that garbled characters like "…" in about 49,000 narratives.
 * **Structural gaps, not errors:** blank turbo and alternative-fuel flags in EPA mean "no", and missing cylinders are
   almost all electric vehicles (1,046 of 1,085). Both are encoded rather than imputed.
 
@@ -107,15 +103,15 @@ The metric is macro-F1, so every component counts equally.
 |---|---|
 | Majority class (CV) | 0.022 |
 | Random by class frequency (CV) | 0.067 |
-| TF-IDF + logistic regression (5-fold CV, 2020-24) | 0.845 ± 0.003 |
-| TF-IDF + logistic regression (hold-out, 2025-26) | **0.827** (accuracy 0.860) |
+| TF-IDF + logistic regression (5-fold CV, 2020-24) | 0.845 ± 0.004 |
+| TF-IDF + logistic regression (hold-out, 2025-26) | **0.827** (accuracy 0.862) |
 
-* When the model's confidence is ≥ 0.6, which applies to 78% of hold-out complaints, it is right **93.7%** of the
-  time. Below that, it is right 59.1% of the time. This makes a natural split between auto-routing and manual review.
-* Weakest class: speed control (F1 0.456, the smallest class). The most common confusions are engine ↔ powertrain,
+* When the model's confidence is ≥ 0.6, which applies to 78% of hold-out complaints, it is right **93.8%** of the
+  time. Below that, it is right 58.8% of the time. This makes a natural split between auto-routing and manual review.
+* Weakest class: speed control (F1 0.401, the smallest class). The most common confusions are engine ↔ powertrain,
   which overlap in how owners describe them.
 * Applied to the 27,780 single-component complaints filed as "UNKNOWN OR OTHER", it suggests a component with
-  confidence ≥ 0.6 for 14,389 of them (51.8%).
+  confidence ≥ 0.6 for 14,375 of them (51.7%).
 
 ## Limits
 

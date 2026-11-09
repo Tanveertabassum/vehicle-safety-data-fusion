@@ -1,8 +1,7 @@
 """Step 0 - download the raw files and verify their SHA-256 hashes.
 
-The project was built from public GitHub mirrors of the official files, because the build environment
-could not reach nhtsa.gov or fueleconomy.gov. The hashes pin the exact files used, so the reported
-numbers are reproducible.
+The reported results were built from public GitHub mirrors of the official files. The hashes pin
+the exact files used, so the reported numbers are reproducible.
 
 Official sources, to refresh the data:
   NHTSA complaints & recalls: https://www.nhtsa.gov/nhtsa-datasets-and-apis  (U.S. public domain)
