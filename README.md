@@ -1,5 +1,5 @@
 # Vehicle safety data fusion: complaints + recalls + specifications
-     **🚀 Live demo: [open the app](https://vehicle-safety-data-fusion-zpbss32ief5dpj7zfp8rxh.streamlit.app/)**
+     **🚀 Live demo: [open the app](https://vehicle-safety-data-fusion-by-tanveer.streamlit.app/)**
 
 ![Overview](docs/Overview.PNG)
 
